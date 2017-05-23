@@ -1,0 +1,58 @@
+---
+title: "長照議題：機構與人員雙變數分析"
+author: "B02302112 政治四 黃馨儀"
+date: "2017/5/23"
+output: html_document
+---
+
+#在作業三曾經提過
+    各種照顧機構（資本）和照護人員（人力資源）的資源分配與利用關係，是我們切入分析的觀察點，因此在作業四決定以「床數」和「各種照護人員數」做相關係數分析，想知道兩者是否有相關？相關程度為何？
+
+#首先先列出床數資料
+```{r}
+rawdata = read.table('result1.csv',
+                     encoding = 'UTF-8',header = T)
+#df <- rawdata %>% group_by(Area)
+library(knitr)
+data = read.table('result1.csv')
+kable(data)
+```
+
+#再列出照護人員資料
+```{r}
+rdata = read.csv('1.csv',
+                 header = TRUE)
+#df1 <- rdata %>% group_by(Area)
+library(knitr)
+data = read.csv('1.csv')
+kable(data)
+```
+
+#用join結合兩個表格
+```{r}
+#newTable = rawdata %>% left_join(rdata, by = c("Area" = "Area"))
+#df2 <- newTable [2:9]
+library(knitr)
+data = read.table('newTable.csv')
+kable(data)
+```
+
+
+#想了解失能老年人口、床數和照護人員的相關性
+```{r}
+#df3 <- cor(df2, use="complete.obs", method="kendall") 
+library(knitr)
+data = read.table('cor.csv')
+kable(data)
+```
+
+
+#資料分析
+    出乎意料的，原本預期「床數」和「照護人員數」會呈現高度且正相關，沒想到使用相關係數分析後，卻出現完全相反的結果：「床數」和「照護人員數」為低度相關，最高的Nursing Staff 相關係數為0.287，再來是Service Man的0.191，剩下的Social Workers、Administrators呈現非常低度的負相關（幾乎可以說是無關）。不過可以觀察到，「床數」和「失能老年人口數」為高度正相關（0.784）。由此推論一地的機構床數會和當地的失能老年人口數成正比，但照護人員卻不會因為床數的多寡而有影響。
+    
+    
+#小結：
+    然而我在作業三提過：失能老年人口數和床數的資源差異——相較之下，住宿式機構床數明顯不足。也就是說在床數不足的情況下，照護人員卻沒有因為資本的不足而做出適當的反應，也就是增加人力資源去遞補，因此不管是在機構還是人員方面都是呈現資源短缺的狀態。
+    長照服務的資源嚴重不足，而且分佈的不均（作業三有分析城鄉差距，可以推論到在一地內也會有內部差異），其次人力有待充實。政府的政策方面，照護人員雖然已經開班，但未來可能沒有辦法滿足真正有需要的人的需求，另外產業參與跟長照服務沒有辦法做出適切的搭配，可以說無法照顧到偏遠的部落，最重要的整個資源沒有辦法整合。
+    
+    
